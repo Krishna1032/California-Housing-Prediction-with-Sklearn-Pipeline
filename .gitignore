@@ -1,3 +1,4 @@
 .ipynb_checkpoints
 .jupyter
 **/data/
+__pycache__
