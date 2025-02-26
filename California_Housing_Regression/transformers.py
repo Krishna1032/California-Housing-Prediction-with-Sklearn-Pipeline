@@ -4,16 +4,19 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, FunctionTransformer, OneHotEncoder
 import numpy as np
 
+# pipeline to process numerical attributes
 num_pipeline = Pipeline([
     ("impute", SimpleImputer(strategy = "median")),
     ("standardize", StandardScaler())
 ])
 
+# pipeline to process categorical attributes
 cat_pipeline = Pipeline([
     ("impute_cat", SimpleImputer(strategy = "most_frequent")),
     ("1hot_encode", OneHotEncoder(handle_unknown = "ignore"))
 ])
 
+# pipeline to produce ratio of attributes
 def column_ratio(X):
     return X[:, [0]] / X[: , [1]]
 
@@ -28,6 +31,7 @@ def ratio_pipeline():
         StandardScaler()
     )
 
+# pipeline to handel heavy tail in the data using Log of the feature
 log_pipeline = make_pipeline(
     SimpleImputer(strategy = "median"),
     FunctionTransformer(np.log, feature_names_out = "one-to-one"),
@@ -48,6 +52,7 @@ class ClusterSimilarity(BaseEstimator, TransformerMixin):
         self.random_state = random_state
 
     def fit(self, X, y = None, sample_weight = None): # y is required even if not used
+        
         # Features that is learned during fit is followed by underscore(kmeans_)
         self.kmeans_ = KMeans(self.n_clusters, n_init = 10, 
                              random_state = self.random_state)
@@ -67,12 +72,13 @@ class ClusterSimilarity(BaseEstimator, TransformerMixin):
 cluster_simil = ClusterSimilarity(n_clusters = 10, gamma = 1., random_state = 42)
 
 
-# ColumnTransformer requires ("name", estimator,columns) 
-# There is also make_column_transformer that doesn't require name
+
+# Creating ColumnTransformer to apply the transformations on different columns
 from sklearn.compose import ColumnTransformer
-# to automatically select the column by dtype we can use make_column_selector
 from sklearn.compose import make_column_selector
 
+
+# final preprocessing pipeline
 preprocessing = ColumnTransformer([
     ("bedrooms", ratio_pipeline(), ["total_bedrooms", "total_rooms"]),
     ("rooms_per_house", ratio_pipeline(), ["total_rooms", "households"]),
@@ -81,5 +87,5 @@ preprocessing = ColumnTransformer([
                            "households", "median_income"]),
     ("geo", cluster_simil,["latitude","longitude"]),
     ("cat", cat_pipeline, make_column_selector(dtype_include = object)),
-], remainder = num_pipeline)
+], remainder = num_pipeline) # all remaining columns will use this
 preprocessing
