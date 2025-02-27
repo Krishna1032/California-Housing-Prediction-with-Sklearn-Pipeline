@@ -24,14 +24,14 @@ A thorough **exploratory data analysis (EDA)** was performed to understand data 
 
 To ensure consistency across training and testing datasets, a **Scikit-Learn Pipeline** was implemented. The pipeline integrates:
 
-- **📝 Feature Engineering & Attribute Combination:**
+- **Feature Engineering & Attribute Combination:**
 
   - Created new ratio-based attributes:
     - `bedrooms_per_room = total_bedrooms / total_rooms`
     - `rooms_per_house = total_rooms / households`
     - `people_per_house = population / households`
 
-- **🔄 Handling Features with Heavy Tail:**
+- **Handling Features with Heavy Tail:**
 
   - Applied **log transformation** to features such as `total_bedrooms`, `total_rooms`, `population`, `households`, and `median_income`.
 
@@ -58,20 +58,20 @@ To ensure consistency across training and testing datasets, a **Scikit-Learn Pip
 
 - **Used Sklearn Pipeline to Streamling the Preprocessing**
 <p align="center">
-  <img src="California_Housing_Regression/images/pipeline.png" alt="Final Pipeline Structure" width="1200" height = "200"/>
+  <img src="California_Housing_Regression/images/pipeline.png" alt="Final Pipeline Structure" width="1200" height = "150"/>
 </p>
 
 This approach eliminates data leakage risks and allows seamless integration of preprocessing steps into the machine learning workflow.
 
-## 🌟 Model Experimentation & Fine-Tuning
+## 📈 Model Experimentation & Fine-Tuning
 
 Multiple models were tested to identify the best-performing one. The following steps were taken:
 
-- **📈 Baseline Model Testing:**
+- **Baseline Model Testing:**
 
   - Experimented with **Linear Regression, Decision Tree, and Random Forest** models.
 
-- **🎯 Hyperparameter Tuning:**
+- **Hyperparameter Tuning:**
 
   - Applied **Grid Search** and **Randomized Search** to optimize model parameters on `Random Forest`.
   - Evaluated model performance using cross-validation.
@@ -81,7 +81,7 @@ Multiple models were tested to identify the best-performing one. The following s
      <img src="California_Housing_Regression/images/random_search.png" alt="Random Search" width="1200" height = "200"/>
   </p>
 
-- **🔬 Final Model Selection:**
+- **Final Model Selection:**
   - Chose the most promising model based on accuracy metric
   - Conducted error analysis and feature importance studies.
 
