@@ -65,7 +65,7 @@ To ensure consistency across training and testing datasets, a **Scikit-Learn Pip
 This approach eliminates data leakage risks and allows seamless integration of preprocessing steps into the machine learning workflow.
 
 <p align="center">
-  <img src="California_Housing_Regression/images/pipeline.png" alt="Final Pipeline Structure" width="1100"/>
+  <img src="California_Housing_Regression/images/pipeline.png" alt="Final Pipeline Structure" width="1200" height = "200"/>
 </p>
 
 ## 🌟 Model Experimentation & Fine-Tuning
@@ -79,8 +79,8 @@ Multiple models were tested to identify the best-performing one. The following s
   - Evaluated model performance using cross-validation to prevent overfitting.
   
   <p align="center">
-    <img src="California_Housing_Regression/images/Grid_search.png" alt="Grid Search" width="1100"/>
-     <img src="California_Housing_Regression/images/random_search.png" alt="Random Search" width="1100"/>
+    <img src="California_Housing_Regression/images/Grid_search.png" alt="Grid Search" width="1200" height = "200"/>
+     <img src="California_Housing_Regression/images/random_search.png" alt="Random Search" width="1200" height = "200"/>
   </p>
   
   
